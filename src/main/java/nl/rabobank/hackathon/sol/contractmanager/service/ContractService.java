@@ -14,6 +14,6 @@ public class ContractService {
 
     public Contract getContractDetails(String contractId) {
         accessService.verifyAccess(contractId);
-        return null;
+        return new Contract();
     }
 }

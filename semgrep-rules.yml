@@ -1,0 +1,27 @@
+rules:
+  - id: missing-access-verification-check
+    patterns:
+      - pattern: |
+          public $RETURN getContract(...) {
+            ...
+            $BODY
+            ...
+          }
+      - pattern-not: accessService.verifyAccess(...)
+    message: Possible missing access check before returning data.
+    languages: [java]
+    severity: ERROR
+    paths:
+      include:
+        - "**/service/**"
+
+#  - id: missing-access-verification-check
+#    patterns:
+#      - pattern: public $RETURN list($PARAMS) { ... }
+#      - pattern-not: accessService.checkIfArrangementIsLinkedToRelationId($A, $B)
+#    message: The method checkIfArrangementIsLinkedToRelationId should be called in the list method.
+#    languages: [java]
+#    severity: ERROR
+#    paths:
+#      include:
+#        - "**/DeclarationController.java"
